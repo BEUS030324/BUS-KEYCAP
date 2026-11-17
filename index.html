@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY BUSDAY | KEYCAP GACHAPON</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800;900&display=swap');
+*{box-sizing:border-box}
+body{margin:0;font-family:'Kanit',sans-serif;background:#a9e8ff;color:#172b50}
+header{text-align:center;padding:35px 15px 20px}
+header h1{font-size:clamp(35px,8vw,65px);font-weight:900;line-height:1;margin:10px 0;text-shadow:4px 4px #ffdb43}
+header p{font-weight:600}
+.sticker{display:inline-block;background:#ffdf48;border:3px solid #172b50;padding:7px 16px;transform:rotate(-3deg);font-weight:900}
+main{max-width:900px;margin:auto;padding:15px}
+.panel{background:#fff;border:3px solid #172b50;border-radius:20px;padding:20px;margin-bottom:18px;box-shadow:6px 6px 0 #172b50}
+h2{margin:0 0 15px;font-size:23px}
+.keychain{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;padding:25px 5px}
+.key{width:clamp(85px,24vw,145px);aspect-ratio:1;border:4px solid #172b50;border-radius:15px;background:#f6f6f6;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:3px 4px 0 #172b50;font-weight:900;text-align:center}
+.key img{width:100%;height:100%;object-fit:cover}
+.logo{background:#ffdf48;font-size:23px;line-height:1.1}
+.member-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.member{border:2px solid #172b50;border-radius:12px;background:#f3fbff;padding:10px 4px;font-family:inherit;font-weight:800;cursor:pointer}
+.member.selected{background:#ffdf48;transform:translateY(-3px);box-shadow:3px 3px 0 #172b50}
+.member small{display:block;font-size:11px;font-weight:600}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button.action{border:3px solid #172b50;border-radius:12px;padding:12px 18px;font-family:inherit;font-size:16px;font-weight:900;cursor:pointer;flex:1}
+.random{background:#ffdf48}.reset{background:#fff}
+.note{font-size:13px;color:#53627b;margin-top:12px}
+#message{text-align:center;font-weight:800;min-height:25px;margin-top:12px}
+footer{text-align:center;padding:20px;font-size:12px}
+@media(min-width:650px){.member-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<div class="sticker">BUS • BEUS • HAPPY DAY</div>
+<h1>KEYCAP<br>GACHAPON!</h1>
+<p>MAKE YOUR OWN BUS KEYCHAIN ✦</p>
+</header>
+<main>
+<section class="panel">
+<h2>✦ YOUR KEYCHAIN ✦</h2>
+<div class="keychain">
+<div class="key logo">BUS<br>BECAUSE<br>OF YOU<br>I SHINE</div>
+<div class="key" id="slot1">เลือกสมาชิก</div>
+<div class="key" id="slot2">เลือกสมาชิก</div>
+</div>
+<div id="extra" class="note" style="text-align:center"></div>
+</section>
+<section class="panel">
+<h2>♡ SELECT YOUR MEMBERS</h2>
+<p>เลือกสมาชิกได้สูงสุด 3 คน (เลือก 2 คนเพื่อใส่บนพวงกุญแจ)</p>
+<div class="member-grid" id="members"></div>
+<div class="actions">
+<button class="action random" onclick="randomPick()">🎲 RANDOM 2 MEMBERS</button>
+<button class="action reset" onclick="resetPick()">↻ RESET</button>
+</div>
+<div id="message"></div>
+<p class="note">* ตอนนี้เป็นตัวอย่างระบบเลือกสมาชิก สามารถเพิ่มรูป Keycap จริงของสมาชิกในขั้นตอนถัดไปได้</p>
+</section>
+</main>
+<footer>HAPPY BUSDAY • MADE WITH LOVE BY BEUS 💙</footer>
+<script>
+const names=['ALAN','MARC','KHUNPOL','HEART','PHUTATCHAI','AA','NEX','JUNG','COPPER','JINWOOK','PEEM','THAI'];
+let selected=[];
+const grid=document.getElementById('members');
+function render(){
+grid.innerHTML='';
+names.forEach(name=>{
+const b=document.createElement('button');
+b.className='member'+(selected.includes(name)?' selected':'');
+b.innerHTML=name+'<small>'+(selected.includes(name)?'✓ SELECTED':'TAP TO SELECT')+'</small>';
+b.onclick=()=>toggle(name);
+grid.appendChild(b);
+});
+const first=selected[0],second=selected[1];
+document.getElementById('slot1').textContent=first||'เลือกสมาชิก';
+document.getElementById('slot2').textContent=second||'เลือกสมาชิก';
+document.getElementById('extra').textContent=selected[2]?'EXTRA MEMBER: '+selected[2]:'';
+document.getElementById('message').textContent=selected.length+' / 3 MEMBERS SELECTED';
+}
+function toggle(name){
+if(selected.includes(name)){selected=selected.filter(x=>x!==name)}
+else if(selected.length<3){selected.push(name)}
+else{document.getElementById('message').textContent='เลือกได้สูงสุด 3 คนค่ะ!';return}
+render();
+}
+function randomPick(){
+const pool=[...names];
+selected=[];
+for(let i=0;i<2;i++){
+const index=Math.floor(Math.random()*pool.length);
+selected.push(pool.splice(index,1)[0]);
+}
+render();
+document.getElementById('message').textContent='YOUR RANDOM MEMBERS ARE READY! ✨';
+}
+function resetPick(){selected=[];render()}
+render();
+</script>
+</body>
+</html>
