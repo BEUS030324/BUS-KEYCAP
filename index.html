@@ -11,10 +11,10 @@
 
 :root {
   --blue: #1677e8;
+  --light-blue: #b9e2ff;
   --yellow: #ffdf35;
   --red: #ff5364;
   --dark: #172d50;
-  --white: #ffffff;
 }
 
 * {
@@ -25,7 +25,7 @@ body {
   margin: 0;
   font-family: 'Kanit', sans-serif;
   color: var(--dark);
-  background-color: #eaf5ff;
+  background: #eaf5ff;
   background-image: radial-gradient(#b9d9ff 1.5px, transparent 1.5px);
   background-size: 19px 19px;
 }
@@ -38,7 +38,6 @@ header {
 header h2 {
   display: inline-block;
   background: var(--yellow);
-  color: var(--dark);
   padding: 7px 22px;
   border: 3px solid var(--dark);
   border-radius: 12px;
@@ -50,7 +49,7 @@ header h2 {
 
 header h1 {
   font-size: clamp(48px, 10vw, 82px);
-  line-height: 0.95;
+  line-height: .95;
   color: var(--blue);
   -webkit-text-stroke: 2px var(--dark);
   text-shadow: 5px 5px 0 var(--yellow);
@@ -62,11 +61,10 @@ header p {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-top: 22px;
 }
 
 .container {
-  width: min(100% - 28px, 950px);
+  width: min(100% - 28px, 1000px);
   margin: auto;
   padding-bottom: 50px;
 }
@@ -86,7 +84,10 @@ header p {
   margin: 0 0 15px;
 }
 
-.mode-buttons {
+/* BUTTONS */
+
+.mode-buttons,
+.sound-controls {
   display: flex;
   gap: 12px;
   justify-content: center;
@@ -102,7 +103,7 @@ button {
   font-size: 16px;
   font-weight: 800;
   box-shadow: 4px 4px 0 var(--dark);
-  transition: 0.15s;
+  transition: .15s;
 }
 
 button:active {
@@ -112,7 +113,6 @@ button:active {
 
 .select-btn {
   background: var(--yellow);
-  color: var(--dark);
 }
 
 .random-btn {
@@ -130,6 +130,8 @@ button.active {
   outline-offset: 2px;
 }
 
+/* KEYCHAIN */
+
 .preview-area {
   text-align: center;
 }
@@ -137,78 +139,215 @@ button.active {
 .preview-title {
   font-size: 23px;
   font-weight: 900;
-  margin-bottom: 8px;
 }
 
 .preview-subtitle {
   color: #60728c;
   font-size: 13px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .keychain {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0;
   flex-wrap: wrap;
-  padding: 20px 5px;
-}
-
-.key-slot {
-  width: clamp(90px, 25vw, 175px);
-  aspect-ratio: 1 / 1;
-  background: #f8fbff;
-  border: 3px solid var(--dark);
-  border-radius: 22px;
-  box-shadow: 5px 5px 0 var(--dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.key-slot.selected-slot {
-  outline: 4px solid var(--yellow);
-  outline-offset: 3px;
-}
-
-.key-slot img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 5px;
-}
-
-.bus-logo {
-  background: var(--blue);
-  color: white;
-  font-size: clamp(28px, 7vw, 55px);
-  font-weight: 900;
-  letter-spacing: -3px;
-  text-shadow: 3px 3px 0 var(--dark);
-}
-
-.empty-slot {
-  color: #9aabc1;
-  font-size: 13px;
-  font-weight: 700;
-  text-align: center;
-  padding: 8px;
-}
-
-.slot-label {
-  margin-top: 12px;
-  font-size: 13px;
-  font-weight: 800;
+  padding: 30px 5px 20px;
 }
 
 .slot-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.slot-wrap:not(:first-child) {
+  margin-left: -3px;
+}
+
+/* MECHANICAL KEYCAP */
+
+.key-slot {
+  width: clamp(105px, 25vw, 185px);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid #dce8f4;
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #e9f4ff 35%,
+      #b8d8ef 70%,
+      #ffffff
+    );
+
+  box-shadow:
+    inset 0 0 0 5px #ffffffcc,
+    inset 0 -8px 15px #25507830,
+    5px 7px 0 #172d504a,
+    0 0 0 2px white;
+
+  overflow: hidden;
   cursor: pointer;
+  transition: transform .09s, box-shadow .09s;
+}
+
+.key-slot::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px solid #ffffffdd;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px #28649620;
+  pointer-events: none;
+}
+
+.key-slot.pressed {
+  transform: translateY(5px) scale(.985);
+  box-shadow:
+    inset 0 0 0 5px #ffffffa6,
+    inset 0 -2px 6px #25507840,
+    2px 2px 0 #172d5040,
+    0 0 0 2px white;
+}
+
+.key-slot.selected-slot {
+  outline: 4px solid var(--yellow);
+  outline-offset: 4px;
+  z-index: 2;
+}
+
+/* KEYCAP FACE */
+
+.keycap-face {
+  position: absolute;
+  inset: 12px;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    145deg,
+    #fafdff,
+    #d8e9f7
+  );
+
+  border: 2px solid #fffffff2;
+
+  box-shadow:
+    inset 0 0 12px #244c7026,
+    0 2px 5px #172d5026;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.keycap-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.empty-slot {
+  color: #7890a8;
+  font-size: clamp(10px, 2vw, 14px);
+  font-weight: 800;
+  text-align: center;
+  padding: 8px;
+}
+
+/* BUS LOGO */
+
+.bus-logo {
+  background: var(--blue);
+  color: white;
+  font-size: clamp(25px, 6vw, 50px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  text-shadow: 3px 3px 0 var(--dark);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BLUE SWITCH */
+
+.keycap-switch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: .22;
+}
+
+.keycap-switch::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #ffffff8c;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 3px #3a719a26;
+}
+
+.keycap-switch::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 23%;
+  height: 23%;
+  transform: translate(-50%, -50%);
+  border-radius: 9px;
+
+  background: linear-gradient(
+    145deg,
+    #4db7ff,
+    #0871d8 55%,
+    #064d9b
+  );
+
+  border: 3px solid #ffffffbf;
+
+  box-shadow:
+    inset 0 2px 5px #ffffff8c,
+    0 3px 5px #00265c59;
+}
+
+/* BUS KEYCAP STYLE */
+
+.slot-wrap:first-child .key-slot {
+  background: linear-gradient(145deg, #4f80d9, #214b9b);
+}
+
+.slot-wrap:first-child .keycap-face {
+  background: linear-gradient(145deg, #4c75c8, #274b9b);
+  border-color: #ffffff59;
+}
+
+.slot-wrap:first-child .keycap-switch {
+  display: none;
+}
+
+.slot-label {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .slot-wrap button {
@@ -217,6 +356,8 @@ button.active {
   font-size: 13px;
   background: var(--yellow);
 }
+
+/* MEMBER PICKER */
 
 .picker-heading {
   display: flex;
@@ -246,7 +387,7 @@ button.active {
   padding: 8px;
   cursor: pointer;
   text-align: center;
-  transition: 0.15s;
+  transition: .15s;
 }
 
 .member-card:hover {
@@ -262,18 +403,18 @@ button.active {
 
 .member-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   object-fit: contain;
   display: block;
 }
 
-.member-card .member-name {
+.member-name {
   font-size: 13px;
   font-weight: 900;
   margin-top: 5px;
 }
 
-.member-card .chosen-label {
+.chosen-label {
   font-size: 10px;
   color: var(--blue);
   font-weight: 800;
@@ -287,6 +428,15 @@ button.active {
   margin-top: 15px;
 }
 
+.sound-controls {
+  margin-top: 14px;
+}
+
+.sound-controls button {
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
 footer {
   text-align: center;
   padding: 10px 15px 35px;
@@ -294,7 +444,9 @@ footer {
   color: #6e829b;
 }
 
-@media (max-width: 550px) {
+/* MOBILE */
+
+@media(max-width:550px) {
   .panel {
     padding: 16px;
   }
@@ -304,12 +456,22 @@ footer {
     gap: 9px;
   }
 
-  .keychain {
-    gap: 8px;
+  .key-slot {
+    width: clamp(96px, 29vw, 135px);
   }
 
   button {
     padding: 10px 17px;
+  }
+
+  .slot-wrap button {
+    padding: 7px 10px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
 </style>
@@ -325,77 +487,172 @@ footer {
 
 <main class="container">
 
+  <!-- CHOOSE STYLE -->
+
   <section class="panel">
     <h3 class="section-title">✦ CHOOSE YOUR STYLE</h3>
+
     <div class="mode-buttons">
-      <button class="select-btn active" id="selectModeBtn"
+
+      <button
+        class="select-btn active"
+        id="selectModeBtn"
         onclick="changeMode('select')">
         SELECT MEMBER
       </button>
-      <button class="random-btn" id="randomModeBtn"
+
+      <button
+        class="random-btn"
+        id="randomModeBtn"
         onclick="randomMembers()">
         RANDOM ✦
       </button>
+
     </div>
   </section>
 
+  <!-- KEYCHAIN PREVIEW -->
+
   <section class="panel preview-area">
+
     <div class="preview-title">YOUR KEYCHAIN</div>
+
     <div class="preview-subtitle">
       เลือกสมาชิก 2 คน เพื่อสร้าง KEYCHAIN ของคุณ
     </div>
 
     <div class="keychain">
 
+      <!-- BUS LOGO -->
+
       <div class="slot-wrap">
-        <div class="key-slot">
-          <div class="bus-logo">BUS</div>
+
+        <div
+          class="key-slot"
+          id="busKey"
+          onclick="playKeySound(this)">
+
+          <div class="keycap-face">
+            <div class="bus-logo">BUS</div>
+          </div>
+
         </div>
+
         <div class="slot-label">BUS LOGO</div>
+
       </div>
 
-      <div class="slot-wrap" onclick="chooseSlot(0)">
-        <div class="key-slot selected-slot" id="slotBox0">
-          <div class="empty-slot" id="slotContent0">
-            MEMBER 01<br>เลือกสมาชิก
+      <!-- MEMBER 01 -->
+
+      <div class="slot-wrap">
+
+        <div
+          class="key-slot selected-slot"
+          id="slotBox0"
+          onclick="chooseSlot(0)">
+
+          <div class="keycap-face" id="slotContent0">
+            <div class="empty-slot">
+              MEMBER 01<br>เลือกสมาชิก
+            </div>
           </div>
+
+          <div class="keycap-switch"></div>
+
         </div>
+
         <div class="slot-label">MEMBER 01</div>
-        <button type="button">SELECT 01</button>
+
+        <button onclick="chooseSlot(0)">
+          SELECT 01
+        </button>
+
       </div>
 
-      <div class="slot-wrap" onclick="chooseSlot(1)">
-        <div class="key-slot" id="slotBox1">
-          <div class="empty-slot" id="slotContent1">
-            MEMBER 02<br>เลือกสมาชิก
+      <!-- MEMBER 02 -->
+
+      <div class="slot-wrap">
+
+        <div
+          class="key-slot"
+          id="slotBox1"
+          onclick="chooseSlot(1)">
+
+          <div class="keycap-face" id="slotContent1">
+            <div class="empty-slot">
+              MEMBER 02<br>เลือกสมาชิก
+            </div>
           </div>
+
+          <div class="keycap-switch"></div>
+
         </div>
+
         <div class="slot-label">MEMBER 02</div>
-        <button type="button">SELECT 02</button>
+
+        <button onclick="chooseSlot(1)">
+          SELECT 02
+        </button>
+
       </div>
 
     </div>
 
-    <button class="reset-btn" onclick="resetAll()">
-      ↻ RESET
-    </button>
+    <!-- SOUND CONTROLS -->
+
+    <div class="sound-controls">
+
+      <button
+        class="reset-btn"
+        id="soundToggle"
+        onclick="toggleSound()">
+        🔊 SOUND ON
+      </button>
+
+      <button
+        class="reset-btn"
+        onclick="playKeySound()">
+        ⌨️ TEST KEY SOUND
+      </button>
+
+      <button
+        class="reset-btn"
+        onclick="resetAll()">
+        ↻ RESET
+      </button>
+
+    </div>
+
+    <div class="hint">
+      กดบน KEYCAP เพื่อทดลองเสียงและเอฟเฟกต์การกด 💙
+    </div>
+
   </section>
 
+  <!-- MEMBER PICKER -->
+
   <section class="panel" id="pickerPanel">
+
     <div class="picker-heading">
+
       <h3 class="section-title" style="margin:0">
         ✦ PICK YOUR MEMBER
       </h3>
-      <p id="activeSlotText">กำลังเลือก MEMBER 01</p>
+
+      <p id="activeSlotText">
+        กำลังเลือก MEMBER 01
+      </p>
+
     </div>
 
     <div class="member-grid" id="memberGrid"></div>
 
     <div class="hint">
-      แตะรูปสมาชิกเพื่อเลือกลงในช่องที่ต้องการได้เลย 💙
+      แตะรูปสมาชิกเพื่อเลือกลงใน KEYCAP ได้เลย 💙
       <br>
       สามารถเลือกสมาชิกคนเดิมซ้ำได้
     </div>
+
   </section>
 
 </main>
@@ -405,9 +662,15 @@ footer {
 </footer>
 
 <script>
-const IMAGE_PATH = "/BUS-KEYCAP/";
+
+/* =================================
+   MEMBER LIST
+================================= */
+
+const IMAGE_PATH = "./";
 
 const members = [
+
   { name: "ALAN", image: "alan.jpg" },
   { name: "MARC", image: "marc.jpg" },
   { name: "KHUNPOL", image: "khunpol.jpg" },
@@ -419,14 +682,192 @@ const members = [
   { name: "COPPER", image: "copper.jpg" },
   { name: "JINWOOK", image: "jinwook.jpg" },
   { name: "PEEM", image: "peem.jpg" },
-  { name: "THAI", image: "thai.jpg" }
+  { name: "THAI", image: "thai.jpg" },
+  { name: "BOB", image: "bob.jpg" }
+
 ];
 
+
+/* =================================
+   VARIABLES
+================================= */
+
 let selected = [null, null];
+
 let activeSlot = 0;
+
 let mode = "select";
 
+let soundEnabled = true;
+
+let audioContext = null;
+
+
+/* =================================
+   MECHANICAL KEYBOARD SOUND
+================================= */
+
+function playKeySound(element) {
+
+  // KEYCAP PRESS ANIMATION
+
+  if (element instanceof HTMLElement) {
+
+    element.classList.add("pressed");
+
+    clearTimeout(element._pressTimer);
+
+    element._pressTimer = setTimeout(() => {
+
+      element.classList.remove("pressed");
+
+    }, 130);
+
+  }
+
+  if (!soundEnabled) return;
+
+  try {
+
+    const AC =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if (!AC) return;
+
+    if (!audioContext) {
+      audioContext = new AC();
+    }
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const now = audioContext.currentTime;
+
+    // CLICK SOUND
+
+    const buffer = audioContext.createBuffer(
+      1,
+      Math.floor(audioContext.sampleRate * .035),
+      audioContext.sampleRate
+    );
+
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < data.length; i++) {
+
+      data[i] =
+        (Math.random() * 2 - 1) *
+        (1 - i / data.length);
+
+    }
+
+    const noise = audioContext.createBufferSource();
+
+    noise.buffer = buffer;
+
+    const filter = audioContext.createBiquadFilter();
+
+    filter.type = "highpass";
+
+    filter.frequency.setValueAtTime(1400, now);
+
+    const noiseGain = audioContext.createGain();
+
+    noiseGain.gain.setValueAtTime(.0001, now);
+
+    noiseGain.gain.exponentialRampToValueAtTime(
+      .15,
+      now + .002
+    );
+
+    noiseGain.gain.exponentialRampToValueAtTime(
+      .0001,
+      now + .035
+    );
+
+    noise.connect(filter);
+
+    filter.connect(noiseGain);
+
+    noiseGain.connect(audioContext.destination);
+
+    noise.start(now);
+
+    noise.stop(now + .04);
+
+
+    // THOCK SOUND
+
+    const osc = audioContext.createOscillator();
+
+    const gain = audioContext.createGain();
+
+    osc.type = "triangle";
+
+    osc.frequency.setValueAtTime(210, now);
+
+    osc.frequency.exponentialRampToValueAtTime(
+      85,
+      now + .055
+    );
+
+    gain.gain.setValueAtTime(.0001, now);
+
+    gain.gain.exponentialRampToValueAtTime(
+      .10,
+      now + .003
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      now + .06
+    );
+
+    osc.connect(gain);
+
+    gain.connect(audioContext.destination);
+
+    osc.start(now);
+
+    osc.stop(now + .065);
+
+  } catch (error) {
+
+    console.log("Audio unavailable");
+
+  }
+
+}
+
+
+/* =================================
+   SOUND ON / OFF
+================================= */
+
+function toggleSound() {
+
+  soundEnabled = !soundEnabled;
+
+  document.getElementById("soundToggle").textContent =
+    soundEnabled
+      ? "🔊 SOUND ON"
+      : "🔇 SOUND OFF";
+
+  if (soundEnabled) {
+    playKeySound();
+  }
+
+}
+
+
+/* =================================
+   CHANGE MODE
+================================= */
+
 function changeMode(value) {
+
   mode = value;
 
   document.getElementById("selectModeBtn")
@@ -436,10 +877,18 @@ function changeMode(value) {
     .classList.toggle("active", value === "random");
 
   renderGrid();
+
 }
 
+
+/* =================================
+   CHOOSE SLOT
+================================= */
+
 function chooseSlot(index) {
+
   activeSlot = index;
+
   mode = "select";
 
   document.getElementById("selectModeBtn")
@@ -448,22 +897,48 @@ function chooseSlot(index) {
   document.getElementById("randomModeBtn")
     .classList.remove("active");
 
+  playKeySound(
+    document.getElementById("slotBox" + index)
+  );
+
+  updatePreview();
+
   renderGrid();
+
 }
 
+
+/* =================================
+   CHOOSE MEMBER
+================================= */
+
 function chooseMember(index) {
+
   if (mode !== "select") return;
 
   selected[activeSlot] = index;
 
-  // สลับไปเลือกอีกช่องหลังจากเลือกสมาชิก
+  playKeySound(
+    document.getElementById("slotBox" + activeSlot)
+  );
+
+  // SWITCH TO NEXT SLOT
+
   activeSlot = activeSlot === 0 ? 1 : 0;
 
   renderGrid();
+
   updatePreview();
+
 }
 
+
+/* =================================
+   RANDOM MEMBERS
+================================= */
+
 function randomMembers() {
+
   mode = "random";
 
   document.getElementById("selectModeBtn")
@@ -472,17 +947,45 @@ function randomMembers() {
   document.getElementById("randomModeBtn")
     .classList.add("active");
 
-  // สุ่มแยกกันทั้งสองช่อง จึงมีโอกาสได้สมาชิกซ้ำ
-  selected[0] = Math.floor(Math.random() * members.length);
-  selected[1] = Math.floor(Math.random() * members.length);
+  // RANDOM TWO MEMBERS
+
+  selected[0] = Math.floor(
+    Math.random() * members.length
+  );
+
+  selected[1] = Math.floor(
+    Math.random() * members.length
+  );
+
+  playKeySound(
+    document.getElementById("slotBox0")
+  );
+
+  setTimeout(() => {
+
+    playKeySound(
+      document.getElementById("slotBox1")
+    );
+
+  }, 100);
 
   updatePreview();
+
   renderGrid();
+
 }
 
+
+/* =================================
+   RESET
+================================= */
+
 function resetAll() {
+
   selected = [null, null];
+
   activeSlot = 0;
+
   mode = "select";
 
   document.getElementById("selectModeBtn")
@@ -491,97 +994,179 @@ function resetAll() {
   document.getElementById("randomModeBtn")
     .classList.remove("active");
 
+  playKeySound(
+    document.getElementById("busKey")
+  );
+
   updatePreview();
+
   renderGrid();
+
 }
 
+
+/* =================================
+   UPDATE KEYCAP PREVIEW
+================================= */
+
 function updatePreview() {
+
   for (let i = 0; i < 2; i++) {
-    const box = document.getElementById("slotContent" + i);
-    const slot = document.getElementById("slotBox" + i);
-    const memberIndex = selected[i];
 
-    slot.classList.toggle("selected-slot", i === activeSlot);
+    const box = document.getElementById(
+      "slotContent" + i
+    );
 
-    if (memberIndex === null) {
-      box.className = "empty-slot";
-      box.innerHTML = "MEMBER 0" + (i + 1) + "<br>เลือกสมาชิก";
-      continue;
-    }
+    const slot = document.getElementById(
+      "slotBox" + i
+    );
 
-    const member = members[memberIndex];
+    const idx = selected[i];
 
-    box.className = "";
+    slot.classList.toggle(
+      "selected-slot",
+      i === activeSlot
+    );
+
     box.innerHTML = "";
 
+    if (idx === null) {
+
+      const empty = document.createElement("div");
+
+      empty.className = "empty-slot";
+
+      empty.innerHTML =
+        "MEMBER 0" + (i + 1) +
+        "<br>เลือกสมาชิก";
+
+      box.appendChild(empty);
+
+      continue;
+
+    }
+
+    const member = members[idx];
+
     const img = document.createElement("img");
+
     img.src = IMAGE_PATH + member.image;
+
     img.alt = member.name;
 
     img.onerror = function() {
-      box.innerHTML = member.name;
-      box.style.fontWeight = "900";
-      box.style.color = "#1677e8";
+
+      box.innerHTML = "";
+
+      const fallback = document.createElement("div");
+
+      fallback.className = "empty-slot";
+
+      fallback.textContent = member.name;
+
+      box.appendChild(fallback);
+
     };
 
     box.appendChild(img);
+
   }
 
   document.getElementById("activeSlotText").textContent =
     "กำลังเลือก MEMBER 0" + (activeSlot + 1);
+
 }
 
+
+/* =================================
+   MEMBER GRID
+================================= */
+
 function renderGrid() {
+
   const grid = document.getElementById("memberGrid");
+
   grid.innerHTML = "";
 
   members.forEach((member, index) => {
+
     const card = document.createElement("div");
+
     card.className = "member-card";
 
     if (selected.includes(index)) {
+
       card.classList.add("chosen");
+
     }
 
     const img = document.createElement("img");
+
     img.src = IMAGE_PATH + member.image;
+
     img.alt = member.name;
 
     img.onerror = function() {
+
       this.style.display = "none";
+
       card.style.minHeight = "90px";
+
     };
 
     const name = document.createElement("div");
+
     name.className = "member-name";
+
     name.textContent = member.name;
 
     const label = document.createElement("div");
+
     label.className = "chosen-label";
 
-    const selectedSlots = [];
+    const slots = [];
+
     selected.forEach((value, slotIndex) => {
+
       if (value === index) {
-        selectedSlots.push("SLOT " + (slotIndex + 1));
+
+        slots.push("SLOT " + (slotIndex + 1));
+
       }
+
     });
 
-    label.textContent = selectedSlots.join(" + ");
+    label.textContent = slots.join(" + ");
 
     card.appendChild(img);
+
     card.appendChild(name);
+
     card.appendChild(label);
 
     card.onclick = function() {
+
+      playKeySound();
+
       chooseMember(index);
+
     };
 
     grid.appendChild(card);
+
   });
+
 }
 
+
+/* =================================
+   INITIALIZE
+================================= */
+
 renderGrid();
+
 updatePreview();
+
 </script>
 
 </body>
