@@ -3,20 +3,18 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAPPY BUSDAY - MEMBER KEYCAP</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap');
+
 :root {
-  --blue: #0875c9;
-  --dark: #172333;
-  --yellow: #ffe34a;
-  --red: #ff555b;
-  --white: #f5f9ff;
+  --blue: #1677e8;
+  --yellow: #ffdf35;
+  --red: #ff5364;
+  --dark: #172d50;
+  --white: #ffffff;
 }
 
 * {
@@ -26,286 +24,292 @@
 body {
   margin: 0;
   font-family: 'Kanit', sans-serif;
-  background: var(--blue);
   color: var(--dark);
-  background-image: radial-gradient(#ffffff35 1.5px, transparent 1.5px);
-  background-size: 17px 17px;
+  background-color: #eaf5ff;
+  background-image: radial-gradient(#b9d9ff 1.5px, transparent 1.5px);
+  background-size: 19px 19px;
 }
 
 header {
   text-align: center;
-  padding: 35px 12px 25px;
-  color: white;
-}
-
-header h1 {
-  color: var(--red);
-  font-size: clamp(36px, 8vw, 65px);
-  font-weight: 900;
-  font-style: italic;
-  line-height: 1.05;
-  text-shadow: 4px 4px var(--dark);
-  margin: 12px 0;
+  padding: 38px 15px 20px;
 }
 
 header h2 {
-  color: var(--yellow);
-  font-size: clamp(20px, 5vw, 30px);
-  text-shadow: 2px 3px var(--dark);
-  margin: 5px;
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--dark);
+  padding: 7px 22px;
+  border: 3px solid var(--dark);
+  border-radius: 12px;
+  box-shadow: 5px 5px 0 var(--dark);
+  font-size: clamp(17px, 4vw, 25px);
+  margin: 0 0 18px;
+  transform: rotate(-2deg);
+}
+
+header h1 {
+  font-size: clamp(48px, 10vw, 82px);
+  line-height: 0.95;
+  color: var(--blue);
+  -webkit-text-stroke: 2px var(--dark);
+  text-shadow: 5px 5px 0 var(--yellow);
+  margin: 10px 0 15px;
+  font-weight: 900;
 }
 
 header p {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-top: 22px;
 }
 
 .container {
-  max-width: 950px;
+  width: min(100% - 28px, 950px);
   margin: auto;
-  padding: 12px;
+  padding-bottom: 50px;
 }
 
 .panel {
-  background: var(--white);
+  background: white;
+  border: 3px solid var(--dark);
+  border-radius: 22px;
+  box-shadow: 7px 7px 0 var(--dark);
   padding: 22px;
-  border: 4px solid var(--dark);
-  box-shadow: 6px 7px var(--dark);
-  margin-bottom: 22px;
-  border-radius: 8px;
+  margin: 22px auto;
 }
 
-h3 {
-  color: #e74750;
+.section-title {
   font-size: 21px;
-  margin: 0 0 12px;
+  font-weight: 800;
+  margin: 0 0 15px;
 }
 
-.subtitle {
-  font-size: 14px;
-  color: #53627b;
-  margin-top: -5px;
+.mode-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
-}
-
-.modes {
-  display: flex;
-  gap: 12px;
-}
-
-.mode {
-  flex: 1;
-  background: #dceeff;
   border: 3px solid var(--dark);
-  padding: 12px 5px;
-  font-weight: 800;
-  border-radius: 7px;
-}
-
-.mode.active {
-  background: var(--yellow);
-  box-shadow: 3px 3px var(--dark);
-}
-
-.preview {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  background: #dceeff;
-  padding: 15px;
-  border: 3px solid var(--dark);
-  border-radius: 8px;
-}
-
-.keycap {
-  position: relative;
-  background: white;
-  border: 3px solid var(--dark);
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  text-align: center;
-  font-weight: 900;
-  box-shadow: 3px 4px var(--dark);
-  border-radius: 8px;
-}
-
-.keycap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  position: absolute;
-  inset: 0;
-}
-
-.keycap .placeholder {
-  padding: 5px;
-  font-size: clamp(12px, 3vw, 20px);
-  line-height: 1.2;
-  overflow-wrap: anywhere;
-}
-
-.logo {
-  background: #3156a5;
-  color: white;
-  font-size: clamp(20px, 5vw, 30px);
-  line-height: 1.1;
-  text-shadow: 2px 2px #111;
-}
-
-.logo small {
-  display: block;
-  font-size: 11px;
-  margin-top: 7px;
-}
-
-.slot-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.slot-button {
-  background: white;
-  border: 3px solid var(--dark);
-  padding: 12px 5px;
-  font-family: inherit;
-  font-weight: 800;
-  border-radius: 7px;
-}
-
-.slot-button.active {
-  background: var(--yellow);
-  box-shadow: 3px 3px var(--dark);
-  transform: translateY(-2px);
-}
-
-.status {
-  text-align: center;
-  font-weight: 800;
-  color: #164c85;
-  margin: 16px 0 5px;
-}
-
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 11px;
-}
-
-.member {
-  background: white;
-  border: 2px solid var(--dark);
-  padding: 7px;
-  border-radius: 7px;
-  transition: .15s;
-  min-width: 0;
-}
-
-.member:hover {
-  transform: translateY(-3px);
-  box-shadow: 3px 3px var(--dark);
-}
-
-.member.selected {
-  background: var(--yellow);
-  border: 3px solid var(--red);
-  box-shadow: 3px 3px var(--dark);
-}
-
-.member img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  display: block;
-  background: #dceeff;
-}
-
-.member-placeholder {
-  width: 100%;
-  aspect-ratio: 1;
-  background: #dceeff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 19px;
-  font-weight: 900;
-  color: #3156a5;
-  overflow-wrap: anywhere;
-  padding: 4px;
-}
-
-.member-name {
-  text-align: center;
-  font-size: 12px;
-  font-weight: 900;
-  padding: 7px 0 2px;
-}
-
-.member-hint {
-  font-size: 10px;
-  text-align: center;
-  color: #53627b;
-}
-
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.actions button {
-  flex: 1;
-  padding: 13px 8px;
-  border: 3px solid var(--dark);
-  border-radius: 7px;
+  border-radius: 13px;
+  padding: 11px 23px;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 var(--dark);
+  transition: 0.15s;
 }
 
-.random {
+button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+.select-btn {
+  background: var(--yellow);
+  color: var(--dark);
+}
+
+.random-btn {
   background: var(--red);
   color: white;
 }
 
-.reset {
+.reset-btn {
+  background: white;
+  color: var(--dark);
+}
+
+button.active {
+  outline: 4px solid #a7d4ff;
+  outline-offset: 2px;
+}
+
+.preview-area {
+  text-align: center;
+}
+
+.preview-title {
+  font-size: 23px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.preview-subtitle {
+  color: #60728c;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.keychain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 20px 5px;
+}
+
+.key-slot {
+  width: clamp(90px, 25vw, 175px);
+  aspect-ratio: 1 / 1;
+  background: #f8fbff;
+  border: 3px solid var(--dark);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.key-slot.selected-slot {
+  outline: 4px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.key-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+}
+
+.bus-logo {
+  background: var(--blue);
+  color: white;
+  font-size: clamp(28px, 7vw, 55px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  text-shadow: 3px 3px 0 var(--dark);
+}
+
+.empty-slot {
+  color: #9aabc1;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px;
+}
+
+.slot-label {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.slot-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.slot-wrap button {
+  margin-top: 12px;
+  padding: 7px 14px;
+  font-size: 13px;
   background: var(--yellow);
 }
 
-.tip {
-  background: #fff3bd;
-  border: 2px dashed var(--dark);
-  border-radius: 7px;
-  padding: 12px;
+.picker-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.picker-heading p {
+  margin: 0;
+  color: #65758b;
+  font-size: 13px;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.member-card {
+  background: #f3f8ff;
+  border: 2px solid #c6ddf7;
+  border-radius: 15px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.15s;
+}
+
+.member-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+}
+
+.member-card.chosen {
+  background: #fff6bf;
+  border: 3px solid var(--blue);
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.member-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+.member-card .member-name {
+  font-size: 13px;
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+.member-card .chosen-label {
+  font-size: 10px;
+  color: var(--blue);
+  font-weight: 800;
+  min-height: 16px;
+}
+
+.hint {
+  text-align: center;
+  color: #687b94;
   font-size: 13px;
   margin-top: 15px;
 }
 
 footer {
   text-align: center;
-  padding: 25px 10px;
-  color: white;
-  font-weight: 700;
+  padding: 10px 15px 35px;
+  font-size: 12px;
+  color: #6e829b;
 }
 
-@media(max-width:520px) {
-  .member-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+@media (max-width: 550px) {
   .panel {
-    padding: 14px;
+    padding: 16px;
   }
 
-  .preview {
-    gap: 7px;
-    padding: 9px;
+  .member-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .keychain {
+    gap: 8px;
+  }
+
+  button {
+    padding: 10px 17px;
   }
 }
 </style>
@@ -322,356 +326,262 @@ footer {
 <main class="container">
 
   <section class="panel">
-    <h3>01 / SELECT YOUR MODE</h3>
-
-    <div class="modes">
-      <button class="mode active" id="selectMode"
+    <h3 class="section-title">✦ CHOOSE YOUR STYLE</h3>
+    <div class="mode-buttons">
+      <button class="select-btn active" id="selectModeBtn"
         onclick="changeMode('select')">
-        ✋ SELECT<br>เลือกสมาชิกเอง
+        SELECT MEMBER
       </button>
-
-      <button class="mode" id="randomMode"
+      <button class="random-btn" id="randomModeBtn"
         onclick="randomMembers()">
-        🎲 RANDOM<br>สุ่มสมาชิก
+        RANDOM ✦
       </button>
     </div>
   </section>
 
-  <section class="panel">
-    <h3>02 / YOUR KEYCHAIN</h3>
-    <p class="subtitle">พวงกุญแจของคุณกำลังจะเกิดขึ้น!</p>
+  <section class="panel preview-area">
+    <div class="preview-title">YOUR KEYCHAIN</div>
+    <div class="preview-subtitle">
+      เลือกสมาชิก 2 คน เพื่อสร้าง KEYCHAIN ของคุณ
+    </div>
 
-    <div class="preview">
+    <div class="keychain">
 
-      <div class="keycap logo">
-        <div>
-          BUS
-          <small>BECAUSE OF YOU<br>I SHINE</small>
+      <div class="slot-wrap">
+        <div class="key-slot">
+          <div class="bus-logo">BUS</div>
         </div>
+        <div class="slot-label">BUS LOGO</div>
       </div>
 
-      <div class="keycap" id="slot1">
-        <div class="placeholder">MEMBER 01</div>
+      <div class="slot-wrap" onclick="chooseSlot(0)">
+        <div class="key-slot selected-slot" id="slotBox0">
+          <div class="empty-slot" id="slotContent0">
+            MEMBER 01<br>เลือกสมาชิก
+          </div>
+        </div>
+        <div class="slot-label">MEMBER 01</div>
+        <button type="button">SELECT 01</button>
       </div>
 
-      <div class="keycap" id="slot2">
-        <div class="placeholder">MEMBER 02</div>
+      <div class="slot-wrap" onclick="chooseSlot(1)">
+        <div class="key-slot" id="slotBox1">
+          <div class="empty-slot" id="slotContent1">
+            MEMBER 02<br>เลือกสมาชิก
+          </div>
+        </div>
+        <div class="slot-label">MEMBER 02</div>
+        <button type="button">SELECT 02</button>
       </div>
 
     </div>
 
-    <div class="slot-buttons">
-
-      <button class="slot-button active" id="slotButton1"
-        onclick="chooseSlot(0)">
-        SLOT 02<br>
-        <span id="slotName1">เลือกสมาชิก</span>
-      </button>
-
-      <button class="slot-button" id="slotButton2"
-        onclick="chooseSlot(1)">
-        SLOT 03<br>
-        <span id="slotName2">เลือกสมาชิก</span>
-      </button>
-
-    </div>
-
-    <p class="status" id="status">
-      เลือกช่องที่ต้องการ แล้วเลือกสมาชิกที่ชอบได้เลย!
-    </p>
-
-    <div class="actions">
-      <button class="random" onclick="randomMembers()">
-        🎲 RANDOM
-      </button>
-
-      <button class="reset" onclick="resetAll()">
-        RESET ↺
-      </button>
-    </div>
-
-    <div class="tip">
-      💡 เลือกสมาชิกคนเดิมลงทั้ง 2 ช่องก็ได้!
-      โลโก้ BUS เป็นช่องล็อก ไม่สามารถเปลี่ยนได้
-    </div>
+    <button class="reset-btn" onclick="resetAll()">
+      ↻ RESET
+    </button>
   </section>
 
-  <section class="panel">
-    <h3>03 / PICK YOUR MEMBERS</h3>
-
-    <p class="subtitle" id="instruction">
-      เลือกสมาชิกได้จากทั้ง 12 คน โดยสามารถเลือกซ้ำได้
-    </p>
+  <section class="panel" id="pickerPanel">
+    <div class="picker-heading">
+      <h3 class="section-title" style="margin:0">
+        ✦ PICK YOUR MEMBER
+      </h3>
+      <p id="activeSlotText">กำลังเลือก MEMBER 01</p>
+    </div>
 
     <div class="member-grid" id="memberGrid"></div>
+
+    <div class="hint">
+      แตะรูปสมาชิกเพื่อเลือกลงในช่องที่ต้องการได้เลย 💙
+      <br>
+      สามารถเลือกสมาชิกคนเดิมซ้ำได้
+    </div>
   </section>
 
 </main>
 
 <footer>
-  HAPPY BUSDAY • MADE WITH LOVE BY BEUS 💙
+  MADE WITH LOVE BY BEUS 💙
 </footer>
 
 <script>
-
-// รูปสมาชิกอยู่ใน Root ของ Repository BUS-KEYCAP
-// ไม่ต้องสร้างโฟลเดอร์ images
-
 const IMAGE_PATH = "/BUS-KEYCAP/";
 
 const members = [
-  {name:"ALAN", image:IMAGE_PATH + "alan.jpg"},
-  {name:"MARC", image:IMAGE_PATH + "marc.jpg"},
-  {name:"KHUNPOL", image:IMAGE_PATH + "khunpol.jpg"},
-  {name:"HEART", image:IMAGE_PATH + "heart.jpg"},
-  {name:"PHUTATCHAI", image:IMAGE_PATH + "phutatchai.jpg"},
-  {name:"AA", image:IMAGE_PATH + "aa.jpg"},
-  {name:"NEX", image:IMAGE_PATH + "nex.jpg"},
-  {name:"JUNG", image:IMAGE_PATH + "jung.jpg"},
-  {name:"COPPER", image:IMAGE_PATH + "copper.jpg"},
-  {name:"JINWOOK", image:IMAGE_PATH + "jinwook.jpg"},
-  {name:"PEEM", image:IMAGE_PATH + "peem.jpg"},
-  {name:"THAI", image:IMAGE_PATH + "thai.jpg"}
+  { name: "ALAN", image: "alan.jpg" },
+  { name: "MARC", image: "marc.jpg" },
+  { name: "KHUNPOL", image: "khunpol.jpg" },
+  { name: "HEART", image: "heart.jpg" },
+  { name: "PHUTATCHAI", image: "phutatchai.jpg" },
+  { name: "AA", image: "aa.jpg" },
+  { name: "NEX", image: "nex.jpg" },
+  { name: "JUNG", image: "jung.jpg" },
+  { name: "COPPER", image: "copper.jpg" },
+  { name: "JINWOOK", image: "jinwook.jpg" },
+  { name: "PEEM", image: "peem.jpg" },
+  { name: "THAI", image: "thai.jpg" }
 ];
 
-let mode = "select";
 let selected = [null, null];
 let activeSlot = 0;
-
-const grid = document.getElementById("memberGrid");
+let mode = "select";
 
 function changeMode(value) {
   mode = value;
 
-  document.getElementById("selectMode")
-    .classList.toggle("active", mode === "select");
+  document.getElementById("selectModeBtn")
+    .classList.toggle("active", value === "select");
 
-  document.getElementById("randomMode")
-    .classList.toggle("active", mode === "random");
+  document.getElementById("randomModeBtn")
+    .classList.toggle("active", value === "random");
 
-  document.getElementById("instruction").textContent =
-    mode === "select"
-      ? "เลือกสมาชิกลงในแต่ละช่องได้ตามใจ เลือกคนเดิมซ้ำได้"
-      : "กด RANDOM เพื่อสุ่มสมาชิกทั้ง 2 ช่อง";
-
-  document.getElementById("status").textContent =
-    mode === "select"
-      ? "เลือกช่องที่ต้องการ แล้วเลือกสมาชิกได้เลย!"
-      : "พร้อมสุ่มสมาชิกแล้ว!";
-
-  updateSlotButtons();
   renderGrid();
 }
 
 function chooseSlot(index) {
   activeSlot = index;
+  mode = "select";
 
-  if (mode !== "select") {
-    changeMode("select");
-  }
+  document.getElementById("selectModeBtn")
+    .classList.add("active");
 
-  updateSlotButtons();
-
-  document.getElementById("status").textContent =
-    "กำลังเลือกสมาชิกสำหรับ SLOT 0" + (index + 2);
+  document.getElementById("randomModeBtn")
+    .classList.remove("active");
 
   renderGrid();
 }
 
+function chooseMember(index) {
+  if (mode !== "select") return;
+
+  selected[activeSlot] = index;
+
+  // สลับไปเลือกอีกช่องหลังจากเลือกสมาชิก
+  activeSlot = activeSlot === 0 ? 1 : 0;
+
+  renderGrid();
+  updatePreview();
+}
+
+function randomMembers() {
+  mode = "random";
+
+  document.getElementById("selectModeBtn")
+    .classList.remove("active");
+
+  document.getElementById("randomModeBtn")
+    .classList.add("active");
+
+  // สุ่มแยกกันทั้งสองช่อง จึงมีโอกาสได้สมาชิกซ้ำ
+  selected[0] = Math.floor(Math.random() * members.length);
+  selected[1] = Math.floor(Math.random() * members.length);
+
+  updatePreview();
+  renderGrid();
+}
+
+function resetAll() {
+  selected = [null, null];
+  activeSlot = 0;
+  mode = "select";
+
+  document.getElementById("selectModeBtn")
+    .classList.add("active");
+
+  document.getElementById("randomModeBtn")
+    .classList.remove("active");
+
+  updatePreview();
+  renderGrid();
+}
+
+function updatePreview() {
+  for (let i = 0; i < 2; i++) {
+    const box = document.getElementById("slotContent" + i);
+    const slot = document.getElementById("slotBox" + i);
+    const memberIndex = selected[i];
+
+    slot.classList.toggle("selected-slot", i === activeSlot);
+
+    if (memberIndex === null) {
+      box.className = "empty-slot";
+      box.innerHTML = "MEMBER 0" + (i + 1) + "<br>เลือกสมาชิก";
+      continue;
+    }
+
+    const member = members[memberIndex];
+
+    box.className = "";
+    box.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.src = IMAGE_PATH + member.image;
+    img.alt = member.name;
+
+    img.onerror = function() {
+      box.innerHTML = member.name;
+      box.style.fontWeight = "900";
+      box.style.color = "#1677e8";
+    };
+
+    box.appendChild(img);
+  }
+
+  document.getElementById("activeSlotText").textContent =
+    "กำลังเลือก MEMBER 0" + (activeSlot + 1);
+}
+
 function renderGrid() {
+  const grid = document.getElementById("memberGrid");
   grid.innerHTML = "";
 
   members.forEach((member, index) => {
+    const card = document.createElement("div");
+    card.className = "member-card";
 
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "member";
-
-    const isInSlot1 = selected[0] === index;
-    const isInSlot2 = selected[1] === index;
-
-    if (isInSlot1 || isInSlot2) {
-      card.classList.add("selected");
+    if (selected.includes(index)) {
+      card.classList.add("chosen");
     }
 
-    const image = document.createElement("img");
-    image.src = member.image;
-    image.alt = member.name;
-    image.loading = "lazy";
+    const img = document.createElement("img");
+    img.src = IMAGE_PATH + member.image;
+    img.alt = member.name;
 
-    image.onerror = function() {
-      const placeholder = document.createElement("div");
-      placeholder.className = "member-placeholder";
-      placeholder.textContent = member.name;
-      this.replaceWith(placeholder);
+    img.onerror = function() {
+      this.style.display = "none";
+      card.style.minHeight = "90px";
     };
-
-    card.appendChild(image);
 
     const name = document.createElement("div");
     name.className = "member-name";
     name.textContent = member.name;
+
+    const label = document.createElement("div");
+    label.className = "chosen-label";
+
+    const selectedSlots = [];
+    selected.forEach((value, slotIndex) => {
+      if (value === index) {
+        selectedSlots.push("SLOT " + (slotIndex + 1));
+      }
+    });
+
+    label.textContent = selectedSlots.join(" + ");
+
+    card.appendChild(img);
     card.appendChild(name);
+    card.appendChild(label);
 
-    const hint = document.createElement("div");
-    hint.className = "member-hint";
-
-    if (isInSlot1 && isInSlot2) {
-      hint.textContent = "✓ SLOT 02 + 03";
-    } else if (isInSlot1) {
-      hint.textContent = "✓ SLOT 02";
-    } else if (isInSlot2) {
-      hint.textContent = "✓ SLOT 03";
-    } else {
-      hint.textContent = "TAP TO SELECT";
-    }
-
-    card.appendChild(hint);
-
-    card.onclick = () => chooseMember(index);
+    card.onclick = function() {
+      chooseMember(index);
+    };
 
     grid.appendChild(card);
   });
 }
 
-function chooseMember(index) {
-
-  if (mode !== "select") {
-    changeMode("select");
-  }
-
-  selected[activeSlot] = index;
-
-  // สลับช่องหลังจากเลือกสมาชิก
-  activeSlot = activeSlot === 0 ? 1 : 0;
-
-  updatePreview();
-  renderGrid();
-
-  if (selected[0] !== null && selected[1] !== null) {
-    document.getElementById("status").textContent =
-      "YOUR KEYCHAIN IS READY! ✨";
-  } else {
-    document.getElementById("status").textContent =
-      "เลือกสมาชิกอีก 1 ช่องได้เลย!";
-  }
-}
-
-function updateSlotButtons() {
-
-  document.getElementById("slotButton1")
-    .classList.toggle("active", activeSlot === 0);
-
-  document.getElementById("slotButton2")
-    .classList.toggle("active", activeSlot === 1);
-
-  document.getElementById("slotName1").textContent =
-    selected[0] === null
-      ? "เลือกสมาชิก"
-      : members[selected[0]].name;
-
-  document.getElementById("slotName2").textContent =
-    selected[1] === null
-      ? "เลือกสมาชิก"
-      : members[selected[1]].name;
-}
-
-function updatePreview() {
-
-  [0, 1].forEach(index => {
-
-    const slot = document.getElementById("slot" + (index + 1));
-
-    slot.innerHTML = "";
-
-    if (selected[index] === null) {
-
-      const placeholder = document.createElement("div");
-      placeholder.className = "placeholder";
-      placeholder.textContent = "MEMBER 0" + (index + 1);
-
-      slot.appendChild(placeholder);
-      return;
-    }
-
-    const member = members[selected[index]];
-
-    const image = document.createElement("img");
-    image.src = member.image;
-    image.alt = member.name;
-
-    image.onerror = function() {
-      this.remove();
-
-      const fallback = document.createElement("div");
-      fallback.className = "placeholder";
-      fallback.textContent = member.name;
-
-      slot.appendChild(fallback);
-    };
-
-    slot.appendChild(image);
-  });
-
-  updateSlotButtons();
-}
-
-function randomMembers() {
-
-  mode = "random";
-
-  document.getElementById("selectMode")
-    .classList.remove("active");
-
-  document.getElementById("randomMode")
-    .classList.add("active");
-
-  // สุ่มแยกกัน จึงสามารถได้สมาชิกซ้ำ
-  selected = [
-    Math.floor(Math.random() * members.length),
-    Math.floor(Math.random() * members.length)
-  ];
-
-  activeSlot = 0;
-
-  updatePreview();
-  renderGrid();
-
-  document.getElementById("instruction").textContent =
-    "ผลการสุ่มสมาชิก 2 ช่อง สามารถสุ่มใหม่ได้อีก!";
-
-  document.getElementById("status").textContent =
-    "YOUR COMBO: " +
-    members[selected[0]].name + " × " +
-    members[selected[1]].name + " ✨";
-}
-
-function resetAll() {
-
-  selected = [null, null];
-  activeSlot = 0;
-  mode = "select";
-
-  document.getElementById("selectMode")
-    .classList.add("active");
-
-  document.getElementById("randomMode")
-    .classList.remove("active");
-
-  document.getElementById("instruction").textContent =
-    "เลือกสมาชิกลงในแต่ละช่องได้ตามใจ เลือกคนเดิมซ้ำได้";
-
-  document.getElementById("status").textContent =
-    "เริ่มจัดพวงกุญแจใหม่ได้เลย!";
-
-  updatePreview();
-  renderGrid();
-}
-
-// เริ่มต้นเว็บไซต์
 renderGrid();
 updatePreview();
-
 </script>
 
 </body>
