@@ -1,676 +1,265 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAPPY BUSDAY - MEMBER KEYCAP</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --blue: #1677e8;
-  --light-blue: #b9e2ff;
   --yellow: #ffdf35;
   --red: #ff5364;
   --dark: #172d50;
+  --white: #ffffff;
 }
-
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Kanit', sans-serif;
   color: var(--dark);
-  background: #eaf5ff;
+  background-color: #eaf5ff;
   background-image: radial-gradient(#b9d9ff 1.5px, transparent 1.5px);
   background-size: 19px 19px;
 }
-
-header {
-  text-align: center;
-  padding: 38px 15px 20px;
-}
-
+header { text-align: center; padding: 38px 15px 20px; }
 header h2 {
-  display: inline-block;
-  background: var(--yellow);
-  padding: 7px 22px;
-  border: 3px solid var(--dark);
-  border-radius: 12px;
-  box-shadow: 5px 5px 0 var(--dark);
-  font-size: clamp(17px, 4vw, 25px);
-  margin: 0 0 18px;
-  transform: rotate(-2deg);
+  display: inline-block; background: var(--yellow); color: var(--dark);
+  padding: 7px 22px; border: 3px solid var(--dark); border-radius: 12px;
+  box-shadow: 5px 5px 0 var(--dark); font-size: clamp(17px, 4vw, 25px);
+  margin: 0 0 18px; transform: rotate(-2deg);
 }
-
 header h1 {
-  font-size: clamp(48px, 10vw, 82px);
-  line-height: .95;
-  color: var(--blue);
-  -webkit-text-stroke: 2px var(--dark);
-  text-shadow: 5px 5px 0 var(--yellow);
-  margin: 10px 0 15px;
-  font-weight: 900;
+  font-size: clamp(48px, 10vw, 82px); line-height: .95; color: var(--blue);
+  -webkit-text-stroke: 2px var(--dark); text-shadow: 5px 5px 0 var(--yellow);
+  margin: 10px 0 15px; font-weight: 900;
 }
-
-header p {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.container {
-  width: min(100% - 28px, 1000px);
-  margin: auto;
-  padding-bottom: 50px;
-}
-
+header p { font-size: 14px; font-weight: 700; letter-spacing: 2px; margin-top: 22px; }
+.container { width: min(100% - 28px, 950px); margin: auto; padding-bottom: 50px; }
 .panel {
-  background: white;
-  border: 3px solid var(--dark);
-  border-radius: 22px;
-  box-shadow: 7px 7px 0 var(--dark);
-  padding: 22px;
-  margin: 22px auto;
+  background: white; border: 3px solid var(--dark); border-radius: 22px;
+  box-shadow: 7px 7px 0 var(--dark); padding: 22px; margin: 22px auto;
 }
-
-.section-title {
-  font-size: 21px;
-  font-weight: 800;
-  margin: 0 0 15px;
+.section-title { font-size: 21px; font-weight: 800; margin: 0 0 15px; }
+.mode-buttons, .sound-controls {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
 }
-
-/* BUTTONS */
-
-.mode-buttons,
-.sound-controls {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 button {
-  font-family: inherit;
-  cursor: pointer;
-  border: 3px solid var(--dark);
-  border-radius: 13px;
-  padding: 11px 23px;
-  font-size: 16px;
-  font-weight: 800;
-  box-shadow: 4px 4px 0 var(--dark);
-  transition: .15s;
+  font-family: inherit; cursor: pointer; border: 3px solid var(--dark);
+  border-radius: 13px; padding: 11px 23px; font-size: 16px; font-weight: 800;
+  box-shadow: 4px 4px 0 var(--dark); transition: transform .12s, box-shadow .12s;
+  touch-action: manipulation;
 }
-
-button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 var(--dark);
+button:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--dark); }
+button:focus-visible, .keycap:focus-visible, .member-card:focus-visible {
+  outline: 4px solid #8fc6ff; outline-offset: 4px;
 }
-
-.select-btn {
-  background: var(--yellow);
-}
-
-.random-btn {
-  background: var(--red);
-  color: white;
-}
-
-.reset-btn {
-  background: white;
-  color: var(--dark);
-}
-
-button.active {
-  outline: 4px solid #a7d4ff;
-  outline-offset: 2px;
-}
-
-/* KEYCHAIN */
-
-.preview-area {
-  text-align: center;
-}
-
-.preview-title {
-  font-size: 23px;
-  font-weight: 900;
-}
-
-.preview-subtitle {
-  color: #60728c;
-  font-size: 13px;
-  margin-bottom: 25px;
-}
-
+.select-btn { background: var(--yellow); color: var(--dark); }
+.random-btn { background: var(--red); color: white; }
+.reset-btn, .sound-btn { background: white; color: var(--dark); }
+button.active { outline: 4px solid #a7d4ff; outline-offset: 2px; }
+.sound-panel { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.sound-label { font-weight: 800; }
+.sound-state { color: #65758b; font-size: 12px; font-weight: 600; }
+.sound-controls button { padding: 8px 15px; font-size: 13px; }
+.sound-toggle { background: #eaf5ff; }
+.sound-toggle.off { background: #f1f3f6; color: #718096; }
+.preview-area { text-align: center; }
+.preview-title { font-size: 23px; font-weight: 900; margin-bottom: 8px; }
+.preview-subtitle { color: #60728c; font-size: 13px; margin-bottom: 20px; }
 .keychain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  flex-wrap: wrap;
-  padding: 30px 5px 20px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
+  flex-wrap: wrap; padding: 22px 5px 16px;
 }
-
-.slot-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+.slot-wrap { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.keycap {
+  --cap-size: clamp(94px, 24vw, 178px);
+  width: var(--cap-size); aspect-ratio: 1; position: relative; cursor: pointer;
+  border: 2px solid rgba(125, 153, 190, .65); border-radius: 17px;
+  background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(207,226,249,.45) 45%, rgba(255,255,255,.72));
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.72), inset 0 0 16px rgba(69,112,170,.17),
+              0 5px 9px rgba(23,45,80,.18), 0 0 0 1px rgba(255,255,255,.8);
+  overflow: hidden; padding: 0; display: block; border-style: solid;
+  transition: transform .11s ease, box-shadow .11s ease, outline .15s;
 }
-
-.slot-wrap:not(:first-child) {
-  margin-left: -3px;
+.keycap::before {
+  content: ""; position: absolute; inset: 7px; border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.9); box-shadow: inset 0 0 9px rgba(76,116,170,.13);
+  pointer-events: none; z-index: 4;
 }
-
-/* MECHANICAL KEYCAP */
-
-.key-slot {
-  width: clamp(105px, 25vw, 185px);
-  aspect-ratio: 1 / 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 3px solid #dce8f4;
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #e9f4ff 35%,
-      #b8d8ef 70%,
-      #ffffff
-    );
-
-  box-shadow:
-    inset 0 0 0 5px #ffffffcc,
-    inset 0 -8px 15px #25507830,
-    5px 7px 0 #172d504a,
-    0 0 0 2px white;
-
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform .09s, box-shadow .09s;
+.keycap.selected-slot { outline: 4px solid var(--yellow); outline-offset: 4px; }
+.keycap:active, .keycap.pressed {
+  transform: translateY(7px) scale(.985);
+  box-shadow: inset 0 5px 12px rgba(23,45,80,.2), 0 1px 2px rgba(23,45,80,.15);
 }
-
-.key-slot::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border: 2px solid #ffffffdd;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px #28649620;
-  pointer-events: none;
+.keycap-inner {
+  position: absolute; inset: 9px; border-radius: 10px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, rgba(255,255,255,.82), rgba(230,241,255,.45));
 }
-
-.key-slot.pressed {
-  transform: translateY(5px) scale(.985);
-  box-shadow:
-    inset 0 0 0 5px #ffffffa6,
-    inset 0 -2px 6px #25507840,
-    2px 2px 0 #172d5040,
-    0 0 0 2px white;
+.keycap-art {
+  position: absolute; inset: 0 0 28%; z-index: 2; display: flex;
+  align-items: center; justify-content: center; padding: 7px;
 }
-
-.key-slot.selected-slot {
-  outline: 4px solid var(--yellow);
-  outline-offset: 4px;
-  z-index: 2;
+.keycap-art img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(23,45,80,.12)); }
+.keycap-art .member-fallback {
+  font-size: clamp(17px, 4vw, 28px); line-height: 1.05; font-weight: 900;
+  color: var(--blue); overflow-wrap: anywhere; text-align: center;
 }
-
-/* KEYCAP FACE */
-
-.keycap-face {
-  position: absolute;
-  inset: 12px;
-  border-radius: 9px;
-
-  background: linear-gradient(
-    145deg,
-    #fafdff,
-    #d8e9f7
-  );
-
-  border: 2px solid #fffffff2;
-
-  box-shadow:
-    inset 0 0 12px #244c7026,
-    0 2px 5px #172d5026;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 2;
+.bus-art {
+  inset: 0 0 29%; background: linear-gradient(145deg, #315eb8, #17418e);
+  color: white; font-size: clamp(27px, 7vw, 52px); font-weight: 900;
+  letter-spacing: -3px; text-shadow: 3px 3px 0 var(--dark);
 }
-
-.keycap-face img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 3px;
+.bus-art small { display: block; font-size: 9px; letter-spacing: 2px; text-shadow: none; }
+.keycap-name {
+  position: absolute; z-index: 5; bottom: 31%; left: 4px; right: 4px;
+  color: var(--dark); font-size: clamp(9px, 2vw, 13px); font-weight: 900;
+  text-align: center; text-shadow: 0 1px 2px white; overflow-wrap: anywhere;
 }
-
-.empty-slot {
-  color: #7890a8;
-  font-size: clamp(10px, 2vw, 14px);
-  font-weight: 800;
-  text-align: center;
-  padding: 8px;
+.switch-housing {
+  position: absolute; z-index: 3; left: 50%; bottom: 5%; transform: translateX(-50%);
+  width: 48%; height: 25%; border: 2px solid rgba(255,255,255,.95);
+  border-radius: 5px; background: linear-gradient(90deg, rgba(167,190,215,.42), rgba(255,255,255,.85), rgba(157,181,209,.45));
+  box-shadow: inset 0 0 5px rgba(50,80,120,.25), 0 1px 4px rgba(23,45,80,.2);
 }
-
-/* BUS LOGO */
-
-.bus-logo {
-  background: var(--blue);
-  color: white;
-  font-size: clamp(25px, 6vw, 50px);
-  font-weight: 900;
-  letter-spacing: -3px;
-  text-shadow: 3px 3px 0 var(--dark);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.switch-housing::before {
+  content: ""; position: absolute; left: 50%; top: -15%; transform: translateX(-50%);
+  width: 56%; height: 58%; border-radius: 4px;
+  background: linear-gradient(135deg, #4ca5ff, #0870df 55%, #064da9);
+  border: 1px solid #d8efff; box-shadow: inset 0 2px 3px rgba(255,255,255,.65), 0 2px 4px rgba(0,55,130,.3);
 }
-
-/* BLUE SWITCH */
-
-.keycap-switch {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-  opacity: .22;
+.switch-housing::after {
+  content: "+"; position: absolute; left: 50%; top: -16%; transform: translateX(-50%);
+  color: #d8f1ff; font: 900 clamp(12px, 3vw, 19px)/1 Arial; z-index: 2;
+  text-shadow: 0 1px 2px #0754a9;
 }
-
-.keycap-switch::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 34%;
-  height: 34%;
-  transform: translate(-50%, -50%);
-  border: 5px solid #ffffff8c;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 3px #3a719a26;
+.slot-label { margin-top: 14px; font-size: 13px; font-weight: 800; }
+.slot-select {
+  margin-top: 9px; padding: 6px 13px; font-size: 12px; background: var(--yellow);
 }
-
-.keycap-switch::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 23%;
-  height: 23%;
-  transform: translate(-50%, -50%);
-  border-radius: 9px;
-
-  background: linear-gradient(
-    145deg,
-    #4db7ff,
-    #0871d8 55%,
-    #064d9b
-  );
-
-  border: 3px solid #ffffffbf;
-
-  box-shadow:
-    inset 0 2px 5px #ffffff8c,
-    0 3px 5px #00265c59;
-}
-
-/* BUS KEYCAP STYLE */
-
-.slot-wrap:first-child .key-slot {
-  background: linear-gradient(145deg, #4f80d9, #214b9b);
-}
-
-.slot-wrap:first-child .keycap-face {
-  background: linear-gradient(145deg, #4c75c8, #274b9b);
-  border-color: #ffffff59;
-}
-
-.slot-wrap:first-child .keycap-switch {
-  display: none;
-}
-
-.slot-label {
-  margin-top: 14px;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.slot-wrap button {
-  margin-top: 12px;
-  padding: 7px 14px;
-  font-size: 13px;
-  background: var(--yellow);
-}
-
-/* MEMBER PICKER */
-
 .picker-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 15px;
 }
-
-.picker-heading p {
-  margin: 0;
-  color: #65758b;
-  font-size: 13px;
-}
-
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 13px;
-}
-
+.picker-heading p { margin: 0; color: #65758b; font-size: 13px; }
+.member-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
 .member-card {
-  background: #f3f8ff;
-  border: 2px solid #c6ddf7;
-  border-radius: 15px;
-  padding: 8px;
-  cursor: pointer;
-  text-align: center;
-  transition: .15s;
+  background: #f3f8ff; border: 2px solid #c6ddf7; border-radius: 15px;
+  padding: 8px; cursor: pointer; text-align: center; transition: .15s;
 }
-
-.member-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--blue);
+.member-card:hover { transform: translateY(-3px); border-color: var(--blue); }
+.member-card.chosen { background: #fff6bf; border: 3px solid var(--blue); box-shadow: 3px 3px 0 var(--dark); }
+.member-card img { width: 100%; aspect-ratio: 1; object-fit: contain; display: block; }
+.member-card .member-name { font-size: 13px; font-weight: 900; margin-top: 5px; }
+.member-card .chosen-label { font-size: 10px; color: var(--blue); font-weight: 800; min-height: 16px; }
+.hint { text-align: center; color: #687b94; font-size: 13px; margin-top: 15px; }
+footer { text-align: center; padding: 10px 15px 35px; font-size: 12px; color: #6e829b; }
+@media (max-width: 550px) {
+  header { padding-top: 28px; }
+  .panel { padding: 16px; }
+  .member-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+  .keychain { gap: 10px; }
+  .keycap { --cap-size: clamp(88px, 27vw, 132px); border-radius: 13px; }
+  button { padding: 10px 17px; }
+  .sound-panel { justify-content: center; text-align: center; }
 }
-
-.member-card.chosen {
-  background: #fff6bf;
-  border: 3px solid var(--blue);
-  box-shadow: 3px 3px 0 var(--dark);
-}
-
-.member-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  display: block;
-}
-
-.member-name {
-  font-size: 13px;
-  font-weight: 900;
-  margin-top: 5px;
-}
-
-.chosen-label {
-  font-size: 10px;
-  color: var(--blue);
-  font-weight: 800;
-  min-height: 16px;
-}
-
-.hint {
-  text-align: center;
-  color: #687b94;
-  font-size: 13px;
-  margin-top: 15px;
-}
-
-.sound-controls {
-  margin-top: 14px;
-}
-
-.sound-controls button {
-  font-size: 13px;
-  padding: 8px 14px;
-}
-
-footer {
-  text-align: center;
-  padding: 10px 15px 35px;
-  font-size: 12px;
-  color: #6e829b;
-}
-
-/* MOBILE */
-
-@media(max-width:550px) {
-  .panel {
-    padding: 16px;
-  }
-
-  .member-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
-  }
-
-  .key-slot {
-    width: clamp(96px, 29vw, 135px);
-  }
-
-  button {
-    padding: 10px 17px;
-  }
-
-  .slot-wrap button {
-    padding: 7px 10px;
-  }
-}
-
-@media(prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
 </head>
-
 <body>
-
 <header>
   <h2>HAPPY BUSDAY 1 + 2 = 3</h2>
   <h1>MEMBER<br>KEYCAP</h1>
-  <p>CREATE YOUR OWN KEYCHAIN ✦</p>
+  <p>CREATE YOUR OWN KEYCAP ✦</p>
 </header>
 
 <main class="container">
-
-  <!-- CHOOSE STYLE -->
-
   <section class="panel">
     <h3 class="section-title">✦ CHOOSE YOUR STYLE</h3>
-
     <div class="mode-buttons">
-
-      <button
-        class="select-btn active"
-        id="selectModeBtn"
-        onclick="changeMode('select')">
-        SELECT MEMBER
-      </button>
-
-      <button
-        class="random-btn"
-        id="randomModeBtn"
-        onclick="randomMembers()">
-        RANDOM ✦
-      </button>
-
+      <button class="select-btn active" id="selectModeBtn" type="button">SELECT MEMBER</button>
+      <button class="random-btn" id="randomModeBtn" type="button">RANDOM ✦</button>
     </div>
   </section>
 
-  <!-- KEYCHAIN PREVIEW -->
+  <section class="panel sound-panel">
+    <div>
+      <div class="sound-label">🔊 KEYCAP SOUND</div>
+      <div class="sound-state" id="soundState">เปิดเสียงอยู่ · Click + Thock</div>
+    </div>
+    <div class="sound-controls">
+      <button class="sound-btn sound-toggle" id="soundToggle" type="button">SOUND: ON</button>
+      <button class="sound-btn" id="testSoundBtn" type="button">▶ TEST SOUND</button>
+    </div>
+  </section>
 
   <section class="panel preview-area">
-
-    <div class="preview-title">YOUR KEYCHAIN</div>
-
-    <div class="preview-subtitle">
-      เลือกสมาชิก 2 คน เพื่อสร้าง KEYCHAIN ของคุณ
-    </div>
+    <div class="preview-title">YOUR KEYCAP</div>
+    <div class="preview-subtitle">เลือกสมาชิก 2 คน เพื่อใส่ลงใน KEYCAP ของคุณ</div>
 
     <div class="keychain">
-
-      <!-- BUS LOGO -->
-
       <div class="slot-wrap">
-
-        <div
-          class="key-slot"
-          id="busKey"
-          onclick="playKeySound(this)">
-
-          <div class="keycap-face">
-            <div class="bus-logo">BUS</div>
-          </div>
-
-        </div>
-
+        <button class="keycap" id="logoKeycap" type="button" aria-label="BUS LOGO keycap">
+          <span class="keycap-inner">
+            <span class="keycap-art bus-art">BUS<small>BOYS' LOVE</small></span>
+            <span class="keycap-name">BUS LOGO</span>
+            <span class="switch-housing"></span>
+          </span>
+        </button>
         <div class="slot-label">BUS LOGO</div>
-
       </div>
 
-      <!-- MEMBER 01 -->
-
       <div class="slot-wrap">
-
-        <div
-          class="key-slot selected-slot"
-          id="slotBox0"
-          onclick="chooseSlot(0)">
-
-          <div class="keycap-face" id="slotContent0">
-            <div class="empty-slot">
-              MEMBER 01<br>เลือกสมาชิก
-            </div>
-          </div>
-
-          <div class="keycap-switch"></div>
-
-        </div>
-
+        <button class="keycap selected-slot" id="slotBox0" type="button" aria-label="เลือกสมาชิกสำหรับ MEMBER 01">
+          <span class="keycap-inner">
+            <span class="keycap-art" id="slotArt0"></span>
+            <span class="keycap-name" id="slotName0">เลือกสมาชิก</span>
+            <span class="switch-housing"></span>
+          </span>
+        </button>
         <div class="slot-label">MEMBER 01</div>
-
-        <button onclick="chooseSlot(0)">
-          SELECT 01
-        </button>
-
+        <button class="slot-select" id="selectSlot0" type="button">SELECT 01</button>
       </div>
-
-      <!-- MEMBER 02 -->
 
       <div class="slot-wrap">
-
-        <div
-          class="key-slot"
-          id="slotBox1"
-          onclick="chooseSlot(1)">
-
-          <div class="keycap-face" id="slotContent1">
-            <div class="empty-slot">
-              MEMBER 02<br>เลือกสมาชิก
-            </div>
-          </div>
-
-          <div class="keycap-switch"></div>
-
-        </div>
-
-        <div class="slot-label">MEMBER 02</div>
-
-        <button onclick="chooseSlot(1)">
-          SELECT 02
+        <button class="keycap" id="slotBox1" type="button" aria-label="เลือกสมาชิกสำหรับ MEMBER 02">
+          <span class="keycap-inner">
+            <span class="keycap-art" id="slotArt1"></span>
+            <span class="keycap-name" id="slotName1">เลือกสมาชิก</span>
+            <span class="switch-housing"></span>
+          </span>
         </button>
-
+        <div class="slot-label">MEMBER 02</div>
+        <button class="slot-select" id="selectSlot1" type="button">SELECT 02</button>
       </div>
-
     </div>
 
-    <!-- SOUND CONTROLS -->
-
-    <div class="sound-controls">
-
-      <button
-        class="reset-btn"
-        id="soundToggle"
-        onclick="toggleSound()">
-        🔊 SOUND ON
-      </button>
-
-      <button
-        class="reset-btn"
-        onclick="playKeySound()">
-        ⌨️ TEST KEY SOUND
-      </button>
-
-      <button
-        class="reset-btn"
-        onclick="resetAll()">
-        ↻ RESET
-      </button>
-
-    </div>
-
-    <div class="hint">
-      กดบน KEYCAP เพื่อทดลองเสียงและเอฟเฟกต์การกด 💙
-    </div>
-
+    <button class="reset-btn" id="resetBtn" type="button">↻ RESET</button>
   </section>
-
-  <!-- MEMBER PICKER -->
 
   <section class="panel" id="pickerPanel">
-
     <div class="picker-heading">
-
-      <h3 class="section-title" style="margin:0">
-        ✦ PICK YOUR MEMBER
-      </h3>
-
-      <p id="activeSlotText">
-        กำลังเลือก MEMBER 01
-      </p>
-
+      <h3 class="section-title" style="margin:0">✦ PICK YOUR MEMBER</h3>
+      <p id="activeSlotText">กำลังเลือก MEMBER 01</p>
     </div>
-
     <div class="member-grid" id="memberGrid"></div>
-
     <div class="hint">
-      แตะรูปสมาชิกเพื่อเลือกลงใน KEYCAP ได้เลย 💙
-      <br>
+      แตะรูปสมาชิกเพื่อเลือกลงในช่องที่ต้องการได้เลย 💙<br>
       สามารถเลือกสมาชิกคนเดิมซ้ำได้
     </div>
-
   </section>
-
 </main>
 
-<footer>
-  MADE WITH LOVE BY BEUS 💙
-</footer>
+<footer>MADE WITH LOVE BY BEUS 💙</footer>
 
 <script>
-
-/* =================================
-   MEMBER LIST
-================================= */
-
-const IMAGE_PATH = "./";
+const IMAGE_PATH = "/BUS-KEYCAP/";
 
 const members = [
-
   { name: "ALAN", image: "alan.jpg" },
   { name: "MARC", image: "marc.jpg" },
   { name: "KHUNPOL", image: "khunpol.jpg" },
@@ -684,490 +273,221 @@ const members = [
   { name: "PEEM", image: "peem.jpg" },
   { name: "THAI", image: "thai.jpg" },
   { name: "BOB", image: "bob.jpg" }
-
 ];
 
-
-/* =================================
-   VARIABLES
-================================= */
-
 let selected = [null, null];
-
 let activeSlot = 0;
-
 let mode = "select";
-
 let soundEnabled = true;
-
 let audioContext = null;
 
+const $ = (id) => document.getElementById(id);
 
-/* =================================
-   MECHANICAL KEYBOARD SOUND
-================================= */
-
-function playKeySound(element) {
-
-  // KEYCAP PRESS ANIMATION
-
-  if (element instanceof HTMLElement) {
-
-    element.classList.add("pressed");
-
-    clearTimeout(element._pressTimer);
-
-    element._pressTimer = setTimeout(() => {
-
-      element.classList.remove("pressed");
-
-    }, 130);
-
-  }
-
-  if (!soundEnabled) return;
-
-  try {
-
-    const AC =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    if (!AC) return;
-
-    if (!audioContext) {
-      audioContext = new AC();
-    }
-
-    if (audioContext.state === "suspended") {
-      audioContext.resume();
-    }
-
-    const now = audioContext.currentTime;
-
-    // CLICK SOUND
-
-    const buffer = audioContext.createBuffer(
-      1,
-      Math.floor(audioContext.sampleRate * .035),
-      audioContext.sampleRate
-    );
-
-    const data = buffer.getChannelData(0);
-
-    for (let i = 0; i < data.length; i++) {
-
-      data[i] =
-        (Math.random() * 2 - 1) *
-        (1 - i / data.length);
-
-    }
-
-    const noise = audioContext.createBufferSource();
-
-    noise.buffer = buffer;
-
-    const filter = audioContext.createBiquadFilter();
-
-    filter.type = "highpass";
-
-    filter.frequency.setValueAtTime(1400, now);
-
-    const noiseGain = audioContext.createGain();
-
-    noiseGain.gain.setValueAtTime(.0001, now);
-
-    noiseGain.gain.exponentialRampToValueAtTime(
-      .15,
-      now + .002
-    );
-
-    noiseGain.gain.exponentialRampToValueAtTime(
-      .0001,
-      now + .035
-    );
-
-    noise.connect(filter);
-
-    filter.connect(noiseGain);
-
-    noiseGain.connect(audioContext.destination);
-
-    noise.start(now);
-
-    noise.stop(now + .04);
-
-
-    // THOCK SOUND
-
-    const osc = audioContext.createOscillator();
-
-    const gain = audioContext.createGain();
-
-    osc.type = "triangle";
-
-    osc.frequency.setValueAtTime(210, now);
-
-    osc.frequency.exponentialRampToValueAtTime(
-      85,
-      now + .055
-    );
-
-    gain.gain.setValueAtTime(.0001, now);
-
-    gain.gain.exponentialRampToValueAtTime(
-      .10,
-      now + .003
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      .0001,
-      now + .06
-    );
-
-    osc.connect(gain);
-
-    gain.connect(audioContext.destination);
-
-    osc.start(now);
-
-    osc.stop(now + .065);
-
-  } catch (error) {
-
-    console.log("Audio unavailable");
-
-  }
-
-}
-
-
-/* =================================
-   SOUND ON / OFF
-================================= */
-
-function toggleSound() {
-
-  soundEnabled = !soundEnabled;
-
-  document.getElementById("soundToggle").textContent =
-    soundEnabled
-      ? "🔊 SOUND ON"
-      : "🔇 SOUND OFF";
-
-  if (soundEnabled) {
-    playKeySound();
-  }
-
-}
-
-
-/* =================================
-   CHANGE MODE
-================================= */
-
-function changeMode(value) {
-
+function setMode(value) {
   mode = value;
-
-  document.getElementById("selectModeBtn")
-    .classList.toggle("active", value === "select");
-
-  document.getElementById("randomModeBtn")
-    .classList.toggle("active", value === "random");
-
-  renderGrid();
-
+  $("selectModeBtn").classList.toggle("active", value === "select");
+  $("randomModeBtn").classList.toggle("active", value === "random");
 }
-
-
-/* =================================
-   CHOOSE SLOT
-================================= */
 
 function chooseSlot(index) {
-
   activeSlot = index;
-
-  mode = "select";
-
-  document.getElementById("selectModeBtn")
-    .classList.add("active");
-
-  document.getElementById("randomModeBtn")
-    .classList.remove("active");
-
-  playKeySound(
-    document.getElementById("slotBox" + index)
-  );
-
+  setMode("select");
   updatePreview();
-
   renderGrid();
-
 }
-
-
-/* =================================
-   CHOOSE MEMBER
-================================= */
 
 function chooseMember(index) {
-
   if (mode !== "select") return;
-
   selected[activeSlot] = index;
-
-  playKeySound(
-    document.getElementById("slotBox" + activeSlot)
-  );
-
-  // SWITCH TO NEXT SLOT
-
+  playKeySound();
+  // เลือกเสร็จแล้วเลื่อนไปอีกช่อง เพื่อให้เลือกต่อได้สะดวก
   activeSlot = activeSlot === 0 ? 1 : 0;
-
-  renderGrid();
-
   updatePreview();
-
+  renderGrid();
 }
-
-
-/* =================================
-   RANDOM MEMBERS
-================================= */
 
 function randomMembers() {
-
-  mode = "random";
-
-  document.getElementById("selectModeBtn")
-    .classList.remove("active");
-
-  document.getElementById("randomModeBtn")
-    .classList.add("active");
-
-  // RANDOM TWO MEMBERS
-
-  selected[0] = Math.floor(
-    Math.random() * members.length
-  );
-
-  selected[1] = Math.floor(
-    Math.random() * members.length
-  );
-
-  playKeySound(
-    document.getElementById("slotBox0")
-  );
-
-  setTimeout(() => {
-
-    playKeySound(
-      document.getElementById("slotBox1")
-    );
-
-  }, 100);
-
+  setMode("random");
+  // สุ่มแยกอิสระ จึงมีโอกาสได้สมาชิกซ้ำกัน
+  selected[0] = Math.floor(Math.random() * members.length);
+  selected[1] = Math.floor(Math.random() * members.length);
+  playKeySound();
   updatePreview();
-
   renderGrid();
-
 }
-
-
-/* =================================
-   RESET
-================================= */
 
 function resetAll() {
-
   selected = [null, null];
-
   activeSlot = 0;
-
-  mode = "select";
-
-  document.getElementById("selectModeBtn")
-    .classList.add("active");
-
-  document.getElementById("randomModeBtn")
-    .classList.remove("active");
-
-  playKeySound(
-    document.getElementById("busKey")
-  );
-
+  setMode("select");
   updatePreview();
-
   renderGrid();
-
+  playKeySound();
 }
-
-
-/* =================================
-   UPDATE KEYCAP PREVIEW
-================================= */
 
 function updatePreview() {
-
   for (let i = 0; i < 2; i++) {
+    const art = $("slotArt" + i);
+    const name = $("slotName" + i);
+    const box = $("slotBox" + i);
+    const memberIndex = selected[i];
 
-    const box = document.getElementById(
-      "slotContent" + i
-    );
+    box.classList.toggle("selected-slot", i === activeSlot);
 
-    const slot = document.getElementById(
-      "slotBox" + i
-    );
-
-    const idx = selected[i];
-
-    slot.classList.toggle(
-      "selected-slot",
-      i === activeSlot
-    );
-
-    box.innerHTML = "";
-
-    if (idx === null) {
-
-      const empty = document.createElement("div");
-
-      empty.className = "empty-slot";
-
-      empty.innerHTML =
-        "MEMBER 0" + (i + 1) +
-        "<br>เลือกสมาชิก";
-
-      box.appendChild(empty);
-
+    if (memberIndex === null) {
+      art.innerHTML = "";
+      name.textContent = "เลือกสมาชิก";
+      box.setAttribute("aria-label", "เลือกสมาชิกสำหรับ MEMBER 0" + (i + 1));
       continue;
-
     }
 
-    const member = members[idx];
+    const member = members[memberIndex];
+    art.innerHTML = "";
 
     const img = document.createElement("img");
-
     img.src = IMAGE_PATH + member.image;
-
     img.alt = member.name;
-
-    img.onerror = function() {
-
-      box.innerHTML = "";
-
-      const fallback = document.createElement("div");
-
-      fallback.className = "empty-slot";
-
+    img.onerror = () => {
+      img.remove();
+      const fallback = document.createElement("span");
+      fallback.className = "member-fallback";
       fallback.textContent = member.name;
-
-      box.appendChild(fallback);
-
+      art.appendChild(fallback);
     };
-
-    box.appendChild(img);
-
+    art.appendChild(img);
+    name.textContent = member.name;
+    box.setAttribute("aria-label", member.name + " ใน MEMBER 0" + (i + 1));
   }
 
-  document.getElementById("activeSlotText").textContent =
-    "กำลังเลือก MEMBER 0" + (activeSlot + 1);
-
+  $("activeSlotText").textContent = "กำลังเลือก MEMBER 0" + (activeSlot + 1);
 }
 
-
-/* =================================
-   MEMBER GRID
-================================= */
-
 function renderGrid() {
-
-  const grid = document.getElementById("memberGrid");
-
+  const grid = $("memberGrid");
   grid.innerHTML = "";
 
   members.forEach((member, index) => {
-
-    const card = document.createElement("div");
-
+    const card = document.createElement("button");
+    card.type = "button";
     card.className = "member-card";
-
-    if (selected.includes(index)) {
-
-      card.classList.add("chosen");
-
-    }
+    card.classList.toggle("chosen", selected.includes(index));
+    card.setAttribute("aria-label", "เลือก " + member.name);
 
     const img = document.createElement("img");
-
     img.src = IMAGE_PATH + member.image;
-
     img.alt = member.name;
-
     img.onerror = function() {
-
       this.style.display = "none";
-
-      card.style.minHeight = "90px";
-
     };
 
     const name = document.createElement("div");
-
     name.className = "member-name";
-
     name.textContent = member.name;
 
     const label = document.createElement("div");
-
     label.className = "chosen-label";
-
-    const slots = [];
-
+    const selectedSlots = [];
     selected.forEach((value, slotIndex) => {
-
-      if (value === index) {
-
-        slots.push("SLOT " + (slotIndex + 1));
-
-      }
-
+      if (value === index) selectedSlots.push("SLOT " + (slotIndex + 1));
     });
+    label.textContent = selectedSlots.join(" + ");
 
-    label.textContent = slots.join(" + ");
-
-    card.appendChild(img);
-
-    card.appendChild(name);
-
-    card.appendChild(label);
-
-    card.onclick = function() {
-
-      playKeySound();
-
-      chooseMember(index);
-
-    };
-
+    card.append(img, name, label);
+    card.addEventListener("click", () => chooseMember(index));
     grid.appendChild(card);
-
   });
-
 }
 
+/* สร้างเสียง Click + Thock ด้วย Web Audio API ไม่ต้องใช้ไฟล์เสียงเพิ่ม */
+function getAudioContext() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return null;
+  if (!audioContext) audioContext = new AudioContextClass();
+  if (audioContext.state === "suspended") audioContext.resume();
+  return audioContext;
+}
 
-/* =================================
-   INITIALIZE
-================================= */
+function playKeySound() {
+  if (!soundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+
+  // Click: เสียงสั้นแหลมจาก noise
+  const clickLength = 0.018;
+  const clickBuffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * clickLength), ctx.sampleRate);
+  const clickData = clickBuffer.getChannelData(0);
+  for (let i = 0; i < clickData.length; i++) {
+    clickData[i] = (Math.random() * 2 - 1) * (1 - i / clickData.length);
+  }
+  const clickSource = ctx.createBufferSource();
+  clickSource.buffer = clickBuffer;
+  const clickFilter = ctx.createBiquadFilter();
+  clickFilter.type = "highpass";
+  clickFilter.frequency.value = 1800;
+  const clickGain = ctx.createGain();
+  clickGain.gain.setValueAtTime(0.0001, now);
+  clickGain.gain.exponentialRampToValueAtTime(0.22, now + 0.002);
+  clickGain.gain.exponentialRampToValueAtTime(0.0001, now + clickLength);
+  clickSource.connect(clickFilter).connect(clickGain).connect(ctx.destination);
+  clickSource.start(now);
+  clickSource.stop(now + clickLength);
+
+  // Thock: เสียงทุ้มสั้น ๆ ตามหลัง click
+  const osc = ctx.createOscillator();
+  const thockGain = ctx.createGain();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(145, now + 0.025);
+  osc.frequency.exponentialRampToValueAtTime(62, now + 0.105);
+  thockGain.gain.setValueAtTime(0.0001, now + 0.025);
+  thockGain.gain.exponentialRampToValueAtTime(0.32, now + 0.032);
+  thockGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+  osc.connect(thockGain).connect(ctx.destination);
+  osc.start(now + 0.025);
+  osc.stop(now + 0.15);
+}
+
+function pressEffect(element) {
+  element.classList.add("pressed");
+  playKeySound();
+  window.setTimeout(() => element.classList.remove("pressed"), 140);
+}
+
+function updateSoundUI() {
+  $("soundToggle").textContent = soundEnabled ? "SOUND: ON" : "SOUND: OFF";
+  $("soundToggle").classList.toggle("off", !soundEnabled);
+  $("soundState").textContent = soundEnabled
+    ? "เปิดเสียงอยู่ · Click + Thock"
+    : "ปิดเสียงอยู่";
+}
+
+$("selectModeBtn").addEventListener("click", () => {
+  setMode("select");
+  renderGrid();
+});
+$("randomModeBtn").addEventListener("click", randomMembers);
+$("selectSlot0").addEventListener("click", () => chooseSlot(0));
+$("selectSlot1").addEventListener("click", () => chooseSlot(1));
+$("slotBox0").addEventListener("click", () => { chooseSlot(0); pressEffect($("slotBox0")); });
+$("slotBox1").addEventListener("click", () => { chooseSlot(1); pressEffect($("slotBox1")); });
+$("logoKeycap").addEventListener("click", () => pressEffect($("logoKeycap")));
+$("resetBtn").addEventListener("click", resetAll);
+$("soundToggle").addEventListener("click", () => {
+  soundEnabled = !soundEnabled;
+  updateSoundUI();
+});
+$("testSoundBtn").addEventListener("click", () => {
+  if (!soundEnabled) {
+    soundEnabled = true;
+    updateSoundUI();
+  }
+  playKeySound();
+});
 
 renderGrid();
-
 updatePreview();
-
+updateSoundUI();
 </script>
-
 </body>
 </html>
